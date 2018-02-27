@@ -70,48 +70,49 @@ export default class App extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <View style={styles.container}>
-        <Image source={require('./home-background.jpg')} height="502" />
-        { user 
-          ?
-            <View style={styles.content}>
-              <Text style={styles.header}>
-                Welcome {user.name}!
-              </Text>
-              <View style={styles.avatar}>
-                <Image source={{ uri: user.avatar}} style={styles.avatarImage} />
+      <ImageBackground source={require('./mainbackground.jpg')} style={styles.container} >
+        <View style={styles.container}>
+          { user 
+            ?
+              <View style={styles.content}>
+                <Text style={styles.header}>
+                  Welcome {user.name}!
+                </Text>
+                <View style={styles.avatar}>
+                  <Image source={{ uri: user.avatar}} style={styles.avatarImage} />
+                </View>
               </View>
-            </View>
-          :
-            <View style={styles.content}>
-              <Text style={styles.header}>
-                Welcome Stranger!
-              </Text>
-              <View style={styles.avatar}>
-                <Icon name="user-circle" size={100} color="rgba(0,0,0,.09)" />
+            :
+              <View style={styles.content}>
+                <Text style={styles.header}>
+                  Welcome Stranger!
+                </Text>
+                <View style={styles.avatar}>
+                  <Icon name="user-circle" size={100} color="white" />
+                </View>
+                <Text style={styles.text}>
+                  Please log in to continue {'\n'}
+                  to see what's in your city!
+                </Text>
               </View>
-              <Text style={styles.text}>
-                Please log in to continue {'\n'}
-                to see what's in your city!
-              </Text>
-            </View>
-        }
-        {/*Login Buttons*/}
-        <View style={styles.buttons}>
-          <Icon.Button name="facebook" 
-                       backgroundColor="#3b5998" 
-                       onPress={this.loginWithFacebook} 
-                       {...iconStyles}
-          > Login with Facebook
-          </Icon.Button>
-          <Icon.Button name="google"
-                       backgroundColor="#DD4B39"
-                       onPress={this.loginWithGoogle} 
-                       {...iconStyles}
-          > Login with Google
-          </Icon.Button>
+          }
+          {/*Login Buttons*/}
+          <View style={styles.buttons}>
+            <Icon.Button name="facebook" 
+                        backgroundColor="#3b5998" 
+                        onPress={this.loginWithFacebook} 
+                        {...iconStyles}
+            > Login with Facebook
+            </Icon.Button>
+            <Icon.Button name="google"
+                        backgroundColor="#DD4B39"
+                        onPress={this.loginWithGoogle} 
+                        {...iconStyles}
+            > Login with Google
+            </Icon.Button>
+          </View>
         </View>
-      </View>
+      </ImageBackground>
     );
   }
 }
@@ -124,11 +125,12 @@ const iconStyles = {
 const styles = StyleSheet.create({
   container:{
     flex: 1,
-    backgroundColor: 'azure'
+    width: '100%',
+    height: '100%'
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     alignItems: 'center'
   },
   avatar: {
@@ -142,11 +144,12 @@ const styles = StyleSheet.create({
   header: {
     fontSize: 20,
     textAlign: 'center',
-    margin: 10
+    margin: 10,
+    color: 'white'
   },
   text: {
     textAlign: 'center',
-    color: '#333',
+    color: 'white',
     marginBottom: 5
   },
   buttons: {
