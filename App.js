@@ -70,31 +70,24 @@ export default class App extends React.Component {
   render() {
     const { user } = this.state;
     return (
-      <ImageBackground source={require('./mainbackground.jpg')} style={styles.container} >
+      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
         <View style={styles.container}>
           { user 
             ?
-              <View style={styles.content}>
-                <Text style={styles.header}>
-                  Welcome {user.name}!
-                </Text>
+              <View style={styles.label}>
                 <View style={styles.avatar}>
                   <Image source={{ uri: user.avatar}} style={styles.avatarImage} />
                 </View>
+                <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
               </View>
             :
-              <View style={styles.content}>
-                <Text style={styles.header}>
-                  Welcome Stranger!
-                </Text>
+              <View style={styles.label}>
                 <View style={styles.avatar}>
-                  <Icon name="user-circle" size={100} color="white" />
+                  <Icon name="user-circle" size={50} color="white" />
                 </View>
-                <Text style={styles.text}>
-                  Please log in to continue {'\n'}
-                  to see what's in your city!
-                </Text>
+                <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
               </View>
+              
           }
           {/*Login Buttons*/}
           <View style={styles.buttons}>
@@ -130,16 +123,27 @@ const styles = StyleSheet.create({
   },
   content: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start'
   },
   avatar: {
-    margin: 20
+    margin: 15,
+    marginTop: 18,
+    shadowRadius: 12,
+    shadowColor: 'white'
   },
   avatarImage: {
-    borderRadius: 50,
-    height: 100,
-    width: 100,
+    borderRadius: 30,
+    width: 60,
+    height: 60,
+    shadowRadius: 12,
+    shadowColor: 'white'
+  },
+  label: {
+    flex: 1,
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-between',
+    marginTop: 15
   },
   header: {
     fontSize: 20,
@@ -154,8 +158,9 @@ const styles = StyleSheet.create({
   },
   buttons: {
     justifyContent: 'space-between',
+    alignItems: 'baseline',
     flexDirection: 'row',
-    margin: 20,
+    margin: 10,
     marginBottom: 30
   }
 });

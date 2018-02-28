@@ -26,7 +26,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>live.reactnote.EventScene</string>
+			<string>EventScene</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>EventScene</string>
