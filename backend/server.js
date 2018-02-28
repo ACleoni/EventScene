@@ -11,7 +11,7 @@ const transformFacebookProfile = (profile) => ({
 });
 
 const transformGoogleProfile = (profile) => ({
-    name: profle.displayName,
+    name: profile.displayName,
     avatar: profile.image.url
 });
 
@@ -44,7 +44,7 @@ app.get('/auth/facebook', passport.authenticate('facebook'));
 
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', {failureRedirect: '/auth/facebook'}),
-    (req, res) => res.redirect('OAuthLogin://login?user=' +JSON.stringify(req.user)));
+    (req, res) => res.redirect('EventScene://login?user=' +JSON.stringify(req.user)));
 
 
 // Set up Google auth routes
@@ -52,7 +52,7 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile']}));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect: '/auth/google'}),
-    (req, res) => res.redirect('OAuthLoging://login?user=' + JSON.stringify(req.user)));
+    (req, res) => res.redirect('EventScene://login?user=' + JSON.stringify(req.user)));
 
 const server = app.listen(3000, () => {
     const {address, port} = server.address();
