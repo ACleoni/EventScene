@@ -3,6 +3,8 @@ import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 
+import User from './models/user'
+
 import {facebook, google} from './config';
 
 const transformFacebookProfile = (profile) => ({
@@ -15,10 +17,27 @@ const transformGoogleProfile = (profile) => ({
     avatar: profile.image.url
 });
 
-passport.use(new FacebookStrategy(facebook,
-    async (accessToken, refreshToken, profile, done) =>
-    done(null, transformFacebookProfile(profile._json))
-));
+passport.use(new FacebookStrategy({
+    clientID: facebook.clientID,
+    clientSecret: facebook.clientSecret,
+    callbackURL: facebook.callbackURL,
+    profileFields: facebook.profileFields
+  }, (accessToken, refreshToken, profile, done) => {
+     console.log("This is the picture")
+     console.log(profile._json.picture.data.url)
+     User.findOrCreate({
+         where: {facebookID: profile.id},
+         defaults: {
+            isNewUser: true,
+            facebookID: profile._json.id,
+            name: profile._json.name,
+            avatar: profile._json.picture.data.url
+         }
+     }).then(res => {
+         console.log(res)
+     })
+     return done(null, transformFacebookProfile(profile._json))
+  }));
 
 passport.use(new GoogleStrategy(google, 
     async (accessToken, refreshToken, profile, done) => 
