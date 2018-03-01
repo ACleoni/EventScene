@@ -21,102 +21,35 @@ export default class Login extends React.Component {
   }
 }
 
-  // static navigationOptions = {
-  //   title: 'Login'
-  // }
-
-  // Set up OAuth2.0 Linking
-  componentDidMount() {
-    // Adds event listener to handle OAuthLogin:// URLs
-    Linking.addEventListener('url', this.handleOpenURL);
-    Linking.getInitialURL().then((url) => {
-      if (url) {
-        this.handleOpenURL({ url });
-      }
-    });
-  };
-
-  componentWillUnmount() {
-    // Remove event listener
-    Linking.removeEventListener('url', this.handleOpenURL)
-  };
-
-  handleOpenURL = ({ url }) => {
-    //Regex expression to extract stringified user string out of the URL
-    const [, user_string] = url.match(/user=([^#]+)/);
-    this.setState({
-      // Parses user string into JSON
-      user: JSON.parse(decodeURI(user_string))
-    });
-
-    if (Platform.OS === 'ios') {
-      SafariView.dismiss();
-    }
-  };
-
-  // Button to handle login with Facebook
-  loginWithFacebook = () => this.openURL('http://10.150.30.130:3000/auth/facebook');
-
-  // Button to handle login with Google
-  loginWithGoogle = () => this.openURL('http://10.150.30.130:3000/auth/google');
-
-
-  // Open URL in a browser
-
-  openURL = (url) => {
-    console.log("It works")
-    if (Platform.OS ==='ios'){
-      SafariView.show({
-        url: url,
-        fromBottom: true,
-      });
-    } else {
-      Linking.openURL(url);
-    }
-  };
-
   render() {
-    const { user } = this.state;
     return (
-      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
-        <View style={styles.container}>
-          { user 
-            ? 
-              <React.Fragment>
-              <View style={styles.label}>
-                <View style={styles.avatar}>
-                  <Image source={{ uri: user.avatar}} style={styles.avatarImage} />
-                </View>
-                <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-              </View>
-              </React.Fragment>
-            :
-              <View style={styles.label}>
-                <View style={styles.avatar}>
-                  <Icon name="user-circle" size={50} color="lightskyblue" />
-                </View>
-                <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-              </View>    
-          }
-          <View style={styles.buttons}>
-            <Icon.Button name="facebook" 
-                        backgroundColor="#3b5998" 
-                        onPress={this.loginWithFacebook} 
-                        {...iconStyles}
-            > Login with Facebook
-            </Icon.Button>
-            <Icon.Button name="google"
-                        backgroundColor="#DD4B39"
-                        onPress={this.loginWithGoogle} 
-                        {...iconStyles}
-            > Login with Google
-            </Icon.Button>
+      <React.Fragment>
+        <View style={styles.label}>
+          <View style={styles.avatar}>
+            <Icon name="user-circle" size={50} color="lightskyblue" />
           </View>
+          <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
+        </View>    
+        <View style={styles.buttons}>
+          <Icon.Button name="facebook" 
+                      backgroundColor="#3b5998" 
+                      onPress={this.props.loginWithFacebook} 
+                      {...iconStyles}
+          > Login with Facebook
+          </Icon.Button>
+          <Icon.Button name="google"
+                      backgroundColor="#DD4B39"
+                      onPress={this.props.loginWithGoogle} 
+                      {...iconStyles}
+          > Login with Google
+          </Icon.Button>
         </View>
-      </ImageBackground>
+    </React.Fragment>
     );
   }
 }
+
+
 
 const iconStyles = {
   borderRadius: 10,
