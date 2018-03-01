@@ -10,7 +10,8 @@ import {facebook, google} from './config';
 
 const transformFacebookProfile = (profile) => ({
     name: profile.name,
-    avatar: profile.picture.data.url
+    avatar: profile.picture.data.url,
+    first_name: profile.first_name
 });
 
 const transformGoogleProfile = (profile) => ({
@@ -24,15 +25,15 @@ passport.use(new FacebookStrategy({
     callbackURL: facebook.callbackURL,
     profileFields: facebook.profileFields
   }, (accessToken, refreshToken, profile, done) => {
-     console.log("This is the picture")
-     console.log(profile._json.picture.data.url)
+    //  console.log("This is the picture")
+     console.log(profile._json)
      User.findOrCreate({
          where: {facebookID: profile.id},
          defaults: {
             name: profile._json.name,
             avatar: profile._json.picture.data.url,
             facebookID: profile._json.id,
-            newUser: true
+            isNewRecord: true
          }
      }).then(res => {
          console.log(res)

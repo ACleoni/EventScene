@@ -12,7 +12,7 @@ const User = sequelize.define('user', {
     facebookID: {
         type: Sequelize.STRING
     },
-    newUser: {
+    isNewRecord: {
         type: Sequelize.BOOLEAN
     }
 });

@@ -6,12 +6,14 @@ import {
     TabNavigator
 } from 'react-navigation'
 
-// import Login from './Login';
 import Profile from './Profile';
+// ßimport UserMap from './UserMap';
 
-export const Tabs = TabNavigator({
-    // Home: { screen: Login },
-    Profile: { screen: Profile }
-    // Events: {screen: Events}
+const Tabs = TabNavigator({
+    // UserMap: { Screen: UserMap },
+    Profile: { screen: Profile}
+
 });
+
+export default Tabs;
 

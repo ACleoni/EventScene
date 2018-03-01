@@ -18,7 +18,7 @@ User.sync({force:true})
             name: 'Default User',
             avatar: null,
             facebookID: '1',
-            newUser: true
+            isNewRecord: true
         }).then(firstUser => {
             console.log(firstUser.toJSON());
         })
