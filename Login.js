@@ -52,10 +52,10 @@ export default class Login extends React.Component {
   };
 
   // Button to handle login with Facebook
-  loginWithFacebook = () => this.openURL('http://10.150.30.130:3000/auth/facebook');
+  loginWithFacebook = () => this.openURL('http://10.0.0.223:3000/auth/facebook');
 
   // Button to handle login with Google
-  loginWithGoogle = () => this.openURL('http://10.150.30.130:3000/auth/google');
+  loginWithGoogle = () => this.openURL('http://10.0.0.223:3000/auth/google');
 
 
   // Open URL in a browser
@@ -91,8 +91,7 @@ export default class Login extends React.Component {
                   <Icon name="map" size={50} color="lightskyblue" />
                 </View>
                 <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-              </View>
-              
+              </View>    
           }
           {/*Login Buttons*/}
           <View style={styles.buttons}>
