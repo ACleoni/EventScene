@@ -1,19 +1,22 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../database');
+const InteractiveMap = require('./interactivemap');
 
 const User = sequelize.define('user', {
-    isNewUser: {
-        type: Sequelize.BOOLEAN
-    },
-    facebookID: {
-        type: Sequelize.STRING
-    },
     name: {
         type: Sequelize.STRING
     },
     avatar: {
         type: Sequelize.STRING
+    },
+    facebookID: {
+        type: Sequelize.STRING
+    },
+    newUser: {
+        type: Sequelize.BOOLEAN
     }
-})
+});
 
-module.exports = User 
+User.hasOne(InteractiveMap);
+
+module.exports = User;

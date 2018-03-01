@@ -55,10 +55,10 @@ export default class Login extends React.Component {
   };
 
   // Button to handle login with Facebook
-  loginWithFacebook = () => this.openURL('http://10.0.0.223:3000/auth/facebook');
+  loginWithFacebook = () => this.openURL('http://10.150.30.130:3000/auth/facebook');
 
   // Button to handle login with Google
-  loginWithGoogle = () => this.openURL('http://10.0.0.223:3000/auth/google');
+  loginWithGoogle = () => this.openURL('http://10.150.30.130:3000/auth/google');
 
 
   // Open URL in a browser
@@ -81,20 +81,21 @@ export default class Login extends React.Component {
       <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
         <View style={styles.container}>
           { user 
-            ?
+            ? 
+              <React.Fragment>
               <View style={styles.label}>
                 <View style={styles.avatar}>
                   <Image source={{ uri: user.avatar}} style={styles.avatarImage} />
                 </View>
                 <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
               </View>
+              </React.Fragment>
             :
               <View style={styles.label}>
                 <View style={styles.avatar}>
-                  <Icon name="map" size={50} color="lightskyblue" />
+                  <Icon name="user-circle" size={50} color="lightskyblue" />
                 </View>
                 <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-
               </View>    
           }
           <View style={styles.buttons}>

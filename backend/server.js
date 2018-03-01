@@ -4,6 +4,7 @@ import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 
 import User from './models/user'
+import InteractiveMap from './models/interactivemap'
 
 import {facebook, google} from './config';
 
@@ -28,13 +29,21 @@ passport.use(new FacebookStrategy({
      User.findOrCreate({
          where: {facebookID: profile.id},
          defaults: {
-            isNewUser: true,
-            facebookID: profile._json.id,
             name: profile._json.name,
-            avatar: profile._json.picture.data.url
+            avatar: profile._json.picture.data.url,
+            facebookID: profile._json.id,
+            newUser: true
          }
      }).then(res => {
          console.log(res)
+         InteractiveMap.findOrCreate({
+             where: {userId: res[0].dataValues.id},
+             defaults: {
+                 userName: res[0].dataValues.name,
+                 uniqueMap: true,
+                 userId: res.id
+             }
+         })
      })
      return done(null, transformFacebookProfile(profile._json))
   }));
