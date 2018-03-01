@@ -54,6 +54,7 @@ app.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect: '/auth/google'}),
     (req, res) => res.redirect('EventScene://login?user=' + JSON.stringify(req.user)));
 
+// Creates server, listening on port 3000
 const server = app.listen(3000, () => {
     const {address, port} = server.address();
     console.log(`Listening at http://${address}:${port}`)
