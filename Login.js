@@ -14,9 +14,12 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 
 export default class Login extends React.Component {
-  state = {
-    user: undefined // User has not signed in yet
-  };
+  constructor(props){
+    super(props);
+    this.state = {
+        user: undefined // User has not signed in yet
+  }
+}
 
   // static navigationOptions = {
   //   title: 'Login'
@@ -91,9 +94,12 @@ export default class Login extends React.Component {
                   <Icon name="map" size={50} color="lightskyblue" />
                 </View>
                 <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
+
+              </View>
+
               </View>    
+
           }
-          {/*Login Buttons*/}
           <View style={styles.buttons}>
             <Icon.Button name="facebook" 
                         backgroundColor="#3b5998" 
