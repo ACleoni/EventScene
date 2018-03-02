@@ -10,3 +10,6 @@ export const google = {
     clientSecret: '99FWcJ2VmzcV_ejdmh0b9yL4',
     callbackURL: 'http://10.150.51.210.xip.io:3000/auth/google/callback'
 }
+
+
+// const googleMapsApiKey = 'AIzaSyBvAb88hAQUgLkIP1frErAfPvs8ljHt4a0'

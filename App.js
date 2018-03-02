@@ -1,6 +1,7 @@
 import React from 'react';
 import Profile from './Profile';
 import Login from './Login';
+import InteractiveMap from './UserMap'
 import {
   Platform,
   StyleSheet,
@@ -83,12 +84,11 @@ export default class App extends React.Component {
                 <React.Fragment>
                     <View style={styles.container}>
                         {
-                            user ? <Profile user={this.state.user} /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
+                            user ? <InteractiveMap user={this.state.user} /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
                         }
                     </View>
                 </React.Fragment>
-            </ImageBackground>
-        
+            </ImageBackground>   
     ) 
   }
 }
