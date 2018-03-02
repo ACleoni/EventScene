@@ -57,10 +57,10 @@ export default class App extends React.Component {
   };
 
   // Button to handle login with Facebook
-  loginWithFacebook = () => this.openURL('http://10.150.51.210:3000/auth/facebook');
+  loginWithFacebook = () => this.openURL('http://10.150.30.130:3000/auth/facebook');
 
   // Button to handle login with Google
-  loginWithGoogle = () => this.openURL('http://10.150.51.210:3000/auth/google');
+  loginWithGoogle = () => this.openURL('http://10.150.30.130:3000/auth/google');
 
 
   // Open URL in a browser
@@ -79,16 +79,12 @@ export default class App extends React.Component {
 
   render() {
     const { user } = this.state;
-    return (
-            <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
-                <React.Fragment>
-                    <View style={styles.container}>
-                        {
-                            user ? <InteractiveMap user={this.state.user} /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
-                        }
-                    </View>
-                </React.Fragment>
-            </ImageBackground>   
+    return (  
+        <View style={styles.container}>
+            {
+                user ? <InteractiveMap user={this.state.user} /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
+            }
+        </View>         
     ) 
   }
 }
@@ -97,7 +93,8 @@ const styles = StyleSheet.create({
     container:{
       flex: 1,
       width: '100%',
-      height: '100%'
+      height: '100%',
+      backgroundColor: 'black'
     },
     content: {
       flex: 1,

@@ -17,11 +17,19 @@ const styles = StyleSheet.create({
       height: '100%',
       width: '100%',
       justifyContent: 'flex-end',
-      alignItems: 'center',
+      alignItems: 'center'
     },
     map: {
       ...StyleSheet.absoluteFillObject,
     },
+    navbar: {
+        height: '10%',
+        backgroundColor: 'lightskyblue',
+        width: '100%'
+    },
+    text: {
+        color: 'white'
+    }
   });
   
   export default class InteractiveMap extends React.Component {
@@ -41,7 +49,11 @@ const styles = StyleSheet.create({
             }}
           >
           </MapView>
+          <View style={styles.navbar}>
+            <Text style={styles.text}>Some stuff</Text>
+          </View>
         </View>
+        
       );
     }
   }

@@ -23,28 +23,30 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
-        <View style={styles.label}>
-          <View style={styles.avatar}>
-            <Icon name="user-circle" size={50} color="lightskyblue" />
+      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
+        <React.Fragment>
+          <View style={styles.label}>
+            <View style={styles.avatar}>
+              <Icon name="user-circle" size={50} color="lightskyblue" />
+            </View>
+            <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
+          </View>    
+          <View style={styles.buttons}>
+            <Icon.Button name="facebook" 
+                        backgroundColor="#3b5998" 
+                        onPress={this.props.loginWithFacebook} 
+                        {...iconStyles}
+            > Login with Facebook
+            </Icon.Button>
+            <Icon.Button name="google"
+                        backgroundColor="#DD4B39"
+                        onPress={this.props.loginWithGoogle} 
+                        {...iconStyles}
+            > Login with Google
+            </Icon.Button>
           </View>
-          <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-        </View>    
-        <View style={styles.buttons}>
-          <Icon.Button name="facebook" 
-                      backgroundColor="#3b5998" 
-                      onPress={this.props.loginWithFacebook} 
-                      {...iconStyles}
-          > Login with Facebook
-          </Icon.Button>
-          <Icon.Button name="google"
-                      backgroundColor="#DD4B39"
-                      onPress={this.props.loginWithGoogle} 
-                      {...iconStyles}
-          > Login with Google
-          </Icon.Button>
-        </View>
-    </React.Fragment>
+      </React.Fragment>
+    </ImageBackground>
     );
   }
 }
