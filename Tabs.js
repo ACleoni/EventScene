@@ -1,19 +1,19 @@
-import React from 'react';
-import Icon from 'react-native-elements'
+// import React from 'react';
+// import Icon from 'react-native-elements'
 
-import {
-    StackNavigator,
-    TabNavigator
-} from 'react-navigation'
+// import {
+//     StackNavigator,
+//     TabNavigator
+// } from 'react-navigation'
 
-import Profile from './Profile';
-// ßimport UserMap from './UserMap';
+// import Profile from './Profile';
+// import InteractiveMap from './UserMap';
 
-const Tabs = TabNavigator({
-    // UserMap: { Screen: UserMap },
-    Profile: { screen: Profile}
+// const Tabs = TabNavigator({
+//     InteractiveMap: { Screen: InteractiveMap },
+//     Profile: { Screen: Profile}
 
-});
+// });
 
-export default Tabs;
+// export default Tabs;
 
