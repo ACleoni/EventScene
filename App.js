@@ -1,7 +1,8 @@
 import React from 'react';
 import Profile from './Profile';
 import Login from './Login';
-import InteractiveMap from './UserMap'
+import Home from './Home'
+import Tabs from './Navigation'
 import {
   Platform,
   StyleSheet,
@@ -16,16 +17,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import SafariView from 'react-native-safari-view';
 
 export default class App extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-        user: undefined // User has not signed in yet
-  }
-}
-
-  // static navigationOptions = {
-  //   title: 'Login'
-  // }
 
   // Set up OAuth2.0 Linking
   componentDidMount() {
@@ -46,10 +37,8 @@ export default class App extends React.Component {
   handleOpenURL = ({ url }) => {
     //Regex expression to extract stringified user string out of the URL
     const [, user_string] = url.match(/user=([^#]+)/);
-    this.setState({
+    this.props.userLogIn(JSON.parse(decodeURI(user_string)))
       // Parses user string into JSON
-      user: JSON.parse(decodeURI(user_string))
-    });
 
     if (Platform.OS === 'ios') {
       SafariView.dismiss();
@@ -78,16 +67,18 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user } = this.props;
     return (  
         <View style={styles.container}>
             {
-                user ? <InteractiveMap user={this.state.user} /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
+                user ? <Home /> : <Login loginWithFacebook={this.loginWithFacebook} loginWithGoogle={this.loginWithGoogle} />
             }
         </View>         
     ) 
   }
 }
+
+
 
 const styles = StyleSheet.create({
     container:{
