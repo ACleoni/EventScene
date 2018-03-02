@@ -9,6 +9,7 @@ import {
   Linking
 } from 'react-native';
 
+
 export default class Login extends React.Component {
   constructor(props){
     super(props);
@@ -16,6 +17,9 @@ export default class Login extends React.Component {
         user: this.props.user // User is logged in 
   }
 }
+  static navigationOptions = {
+    Title: 'Profile'
+  }
 
   render() {
     const user=this.props.user
@@ -32,7 +36,6 @@ export default class Login extends React.Component {
               <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/>
           </View>
         </View>
-      {/* <Tabs /> */}
       </React.Fragment>
     );
   }
@@ -42,7 +45,8 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     width: '100%',
-    height: '100%'
+    height: '100%',
+    backgroundColor: 'white'
   },
   content: {
     flex: 1,
@@ -78,7 +82,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    color: 'white',
+    color: 'black',
     fontSize: 26,
     marginTop: 30
   },
