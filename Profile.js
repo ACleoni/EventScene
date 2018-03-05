@@ -32,6 +32,7 @@ export default class Login extends React.Component {
             </View>
             <View style={styles.content}>
               <Text style={styles.text}>Hi {user.first_name}!</Text>
+              <Text>Logged in with {user.email}</Text>
             </View>
               <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/>
           </View>
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     height: '100%',
-    backgroundColor: 'white'
+    backgroundColor: 'aliceblue'
   },
   content: {
     flex: 1,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   label: {
     flex: 1,
-    flexDirection: 'row-reverse',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     marginTop: 15
   },

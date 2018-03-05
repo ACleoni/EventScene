@@ -1,5 +1,6 @@
 import React from 'react';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { Marker } from 'react-native-maps';
 import Tabs from './Navigation';
 
 import {

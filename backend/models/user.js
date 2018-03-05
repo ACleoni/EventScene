@@ -9,7 +9,16 @@ const User = sequelize.define('user', {
     avatar: {
         type: Sequelize.STRING
     },
+    passportStrategy: {
+        type: Sequelize.STRING
+    },
     facebookID: {
+        type: Sequelize.STRING
+    },
+    googleID: {
+        type: Sequelize.STRING
+    },
+    email: {
         type: Sequelize.STRING
     },
     isNewRecord: {
