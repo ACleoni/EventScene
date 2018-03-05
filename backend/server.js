@@ -9,14 +9,15 @@ import InteractiveMap from './models/interactivemap'
 import {facebook, google} from './config';
 
 const transformFacebookProfile = (profile) => ({
-    name: profile.name,
+    first_name: profile.first_name,
     avatar: profile.picture.data.url,
-    first_name: profile.first_name
+    email: profile.email
 });
 
 const transformGoogleProfile = (profile) => ({
-    name: profile.displayName,
-    avatar: profile.image.url
+    first_name: profile.name.givenName,
+    avatar: profile.image.url,
+    email: profile.emails[0].value
 });
 
 passport.use(new FacebookStrategy({
@@ -25,14 +26,15 @@ passport.use(new FacebookStrategy({
     callbackURL: facebook.callbackURL,
     profileFields: facebook.profileFields
   }, (accessToken, refreshToken, profile, done) => {
-    //  console.log("This is the picture")
      console.log(profile._json)
      User.findOrCreate({
          where: {facebookID: profile.id},
          defaults: {
             name: profile._json.name,
             avatar: profile._json.picture.data.url,
+            passportStrategy: 'Facebook',
             facebookID: profile._json.id,
+            email: profile._json.email,
             isNewRecord: true
          }
      }).then(res => {
@@ -49,9 +51,34 @@ passport.use(new FacebookStrategy({
      return done(null, transformFacebookProfile(profile._json))
   }));
 
-passport.use(new GoogleStrategy(google, 
-    async (accessToken, refreshToken, profile, done) => 
-    done(null, transformGoogleProfile(profile._json))
+passport.use(new GoogleStrategy({
+    clientID: google.clientID,
+    clientSecret: google.clientSecret,
+    callbackURL: google.callbackURL
+}, (accessToken, refreshToken, profile, done) => { 
+    console.log(profile._json)
+    User.findOrCreate({
+        where: {googleID: profile.id},
+        defaults: {
+            name: profile._json.displayName,
+            avatar: profile._json.image.url,
+            passportStrategy: 'Google',
+            googleID: profile._json.id,
+            email: profile._json.emails[0].value,
+            isNewRecord: true
+        }
+    }).then(res => {
+        console.log(res)
+        InteractiveMap.findOrCreate({
+            where: {userId: res[0].dataValues.id},
+            defaults: {
+                userName: res[0].dataValues.name,
+                uniqueMap: true,
+                userId: res.id
+            }
+        })
+    })
+    return done(null, transformGoogleProfile(profile._json))}
 ));
 
 // Serialize user into sessions
@@ -69,7 +96,7 @@ app.use(passport.session());
 
 
 // Set up Facebook auth routes
-app.get('/auth/facebook', passport.authenticate('facebook'));
+app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email']}));
 
 app.get('/auth/facebook/callback', 
     passport.authenticate('facebook', {failureRedirect: '/auth/facebook'}),
@@ -77,7 +104,7 @@ app.get('/auth/facebook/callback',
 
 
 // Set up Google auth routes
-app.get('/auth/google', passport.authenticate('google', { scope: ['profile']}));
+app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email']}));
 
 app.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect: '/auth/google'}),
