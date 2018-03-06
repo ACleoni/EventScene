@@ -17,4 +17,6 @@ const MainApp = (props) => {
     )
 }
 
+console.ignoredYellowBox = ['Remote debugger'];
+
 AppRegistry.registerComponent('EventScene', () => MainApp);

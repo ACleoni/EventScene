@@ -3,21 +3,25 @@ import passport from 'passport';
 import FacebookStrategy from 'passport-facebook';
 import GoogleStrategy from 'passport-google-oauth20';
 
-import User from './models/user'
-import InteractiveMap from './models/interactivemap'
+import User from './models/user';
+import InteractiveMap from './models/interactivemap';
 
 import {facebook, google} from './config';
+
+import logout from 'express-passport-logout';
 
 const transformFacebookProfile = (profile) => ({
     first_name: profile.first_name,
     avatar: profile.picture.data.url,
-    email: profile.email
+    email: profile.email,
+    passport: "Facebook"
 });
 
 const transformGoogleProfile = (profile) => ({
     first_name: profile.name.givenName,
     avatar: profile.image.url,
-    email: profile.emails[0].value
+    email: profile.emails[0].value,
+    passport: "Google"
 });
 
 passport.use(new FacebookStrategy({
@@ -109,6 +113,12 @@ app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'em
 app.get('/auth/google/callback',
     passport.authenticate('google', {failureRedirect: '/auth/google'}),
     (req, res) => res.redirect('EventScene://login?user=' + JSON.stringify(req.user)));
+
+app.get('/logout', function(req, res){
+    console.log('Logging Out');
+    req.logout();
+    res.redirect('/');
+});
 
 // Creates server, listening on port 3000
 const server = app.listen(3000, () => {

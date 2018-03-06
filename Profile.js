@@ -6,7 +6,8 @@ import {
   View,
   Image, 
   ImageBackground,
-  Linking
+  Linking,
+  Button
 } from 'react-native';
 
 
@@ -32,9 +33,8 @@ export default class Login extends React.Component {
             </View>
             <View style={styles.content}>
               <Text style={styles.text}>Hi {user.first_name}!</Text>
-              <Text>Logged in with {user.email}</Text>
+              <Text>Logged in with {user.passport}</Text>
             </View>
-              <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/>
           </View>
         </View>
       </React.Fragment>

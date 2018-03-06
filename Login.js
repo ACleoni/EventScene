@@ -55,20 +55,17 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
+      <ImageBackground source={require('./preview.jpg')} style={styles.container} >
         <React.Fragment>
-          <View style={styles.label}>
-            <View style={styles.avatar}>
-              <Icon name="user-circle" size={50} color="lightskyblue" />
-            </View>
-            <Image source={require('./iphone-app-3x.png')} style={{width: 70, height: 70, marginTop: 10}}/> 
-          </View>
-          <View>
-            <FadeInView style={{width: '100%', height: 500}}>
-            <Text style={{fontSize: 48, textAlign: 'center', margin: 10, color: 'azure'}}>
-              EVENT    SCENE
+          <View style={styles.content}>
+            <FadeInView>
+            <Text style={styles.text}>
+              Event Scene
             </Text>
             </FadeInView>
+          </View>
+          <View style={styles.smallText}>
+          <Text style={{color: 'white', fontSize: 16, fontFamily: 'Futura'}}>Please log in to view events in your area</Text>
           </View>
           <View style={styles.buttons}>
             <Icon.Button name="facebook" 
@@ -105,45 +102,23 @@ const styles = StyleSheet.create({
     height: '100%'
   },
   content: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start'
-  },
-  avatar: {
-    margin: 15,
-    marginTop: 18,
-    shadowRadius: 12,
-    shadowColor: 'white'
-  },
-  avatarImage: {
-    borderRadius: 30,
-    width: 60,
-    height: 60,
-    shadowRadius: 12,
-    shadowColor: 'white'
-  },
-  label: {
-    flex: 1,
-    flexDirection: 'row-reverse',
-    justifyContent: 'space-between',
-    marginTop: 15
-  },
-  header: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'white'
+    width: '100%',
+    height: '85%',
+    paddingTop: 80,
   },
   text: {
     textAlign: 'center',
-    color: 'white',
-    marginBottom: 5
+    fontSize: 72, 
+    color: 'lightyellow', 
+    fontFamily: 'Noteworthy'
+  },
+  smallText: {
+    alignItems: 'center'
   },
   buttons: {
     justifyContent: 'space-between',
-    alignItems: 'baseline',
+    alignItems: 'center',
     flexDirection: 'row',
-    margin: 10,
-    marginBottom: 30
+    margin: 10
   }
 });
