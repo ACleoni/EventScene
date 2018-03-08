@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
 import Profile from './Profile';
 
-// import {
-//     login
-// } from './ProfileAction'
+import {
+    createLoginAction
+} from './ProfileAction';
 
 
 const mapStateToProps = (state) => {
@@ -12,11 +12,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
+const mapDispatchToProps = (dispatch) => {
+    return {
+        userLogOut: (user) => {
+            console.log('User has logged out successfully')
+            dispatch(createLoginAction(null));
+        }
 
-//     }
-// }
+    }
+}
 
 
-export default connect(mapStateToProps)(Profile)
+export default connect(mapStateToProps, mapDispatchToProps)(Profile)

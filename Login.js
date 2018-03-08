@@ -55,7 +55,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={require('./preview.jpg')} style={styles.container} >
+      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
         <React.Fragment>
           <View style={styles.content}>
             <FadeInView>

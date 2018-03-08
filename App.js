@@ -1,5 +1,5 @@
 import React from 'react';
-import Profile from './Profile';
+import Profile from './ProfileContainer';
 import Login from './Login';
 import Home from './Home'
 import Tabs from './Navigation'
@@ -53,6 +53,7 @@ export default class App extends React.Component {
 
 
   // Open URL in a browser
+  
 
   openURL = (url) => {
     console.log("It works")
