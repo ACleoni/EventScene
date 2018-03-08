@@ -10,17 +10,17 @@ const Tabs = TabNavigator({
     Map: {screen: InteractiveMap,
     navigationOptions: {
         tabBarLabel: 'Map',
-        tabBarIcon: <Icon name ="map" size={35} color='lightskyblue' reverse={true} raised={true} /> }
+        tabBarIcon: <Icon name ="map" size={35} color='lightskyblue'  /> }
     },
     Feed: {screen: Feed,
     navigationOptions: {
         tabBarLabel: 'My Events',
-        tabBarIcon: <Icon name ="list" size={35} color='lightskyblue' reverse={true} raised={true}  /> }
+        tabBarIcon: <Icon name ="list" size={35} color='lightskyblue'   /> }
     },
     Profile: {screen: Profile,
     navigationOptions: {
         tabBarLabel: 'My Info',
-        tabBarIcon: <Icon name ="account-circle" size={35} color='lightskyblue' reverse={true} raised={true}  /> }
+        tabBarIcon: <Icon name ="account-circle" size={35} color='lightskyblue'   /> }
     },
 })
 

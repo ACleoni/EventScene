@@ -23,9 +23,13 @@ export default class Feed extends React.Component {
 
   render() {
     return(
-        <View style={styles.container}>
-            <Text>My Events</Text>
-        </View>
+      <ImageBackground source={require('./preview.jpg')} style={styles.container} >
+        <React.Fragment>
+          <View style={styles.container}>
+              <Text>My Events</Text>
+          </View>
+        </React.Fragment>
+      </ImageBackground>
     )
   }
 }
@@ -37,6 +41,6 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       width: '100%',
       height: '100%',
-      backgroundColor: 'aliceblue'
+      // backgroundColor: 'aliceblue'
     }
 })

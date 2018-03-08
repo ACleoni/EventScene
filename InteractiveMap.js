@@ -132,9 +132,10 @@ export default class InteractiveMap extends React.Component {
                     />
                 ))}
                 </MapView>
-                <View style={styles.buttonContainer}>
-                <Button onPress={this.handlePress} title="Shoot" style={styles.Icon} /><Icon name='crosshairs' size={25}/>
+                <View style={styles.targetContainer}>
+                    <Image source={require('./crosshairs.png')} style={{height: 25, width: 25}} />
                 </View>
+                <Button onPress={this.handlePress} title="Shoot" />
             </View>
         </React.Fragment>
         );
@@ -159,13 +160,13 @@ const styles = StyleSheet.create({
         borderBottomWidth: .5,
         borderBottomColor: 'grey'
     },
-    buttonContainer: {
+    targetContainer: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: '50%',
-        borderWidth: 2
-        
-
+        marginBottom: '75%',
+        // borderWidth: 2,
+        height: 25,
+        width: 25
     }
 });
 

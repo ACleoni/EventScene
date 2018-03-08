@@ -7,13 +7,14 @@ import {
   Image, 
   ImageBackground,
   Linking,
-  Button,
-  ScrollView
+  Button
 } from 'react-native';
 
+import axios from 'axios';
 
 
 import Login from './Login'
+import InteractiveMap from './InteractiveMap'
 
 
 
@@ -21,23 +22,32 @@ export default class Profile extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-        user: this.props.user // User is logged in 
-  }
-}
+        user: this.props.user, // User is logged in
+    } 
+  } 
   static navigationOptions = {
     Title: 'Profile'
   }
 
+  logUser = () => {
+        console.log(this.state)
+    }
+  
+
   render() {
     const user=this.props.user
     return (
-      <ImageBackground source={require('./loginbackground.jpg')} style={styles.container} >
+      
         <React.Fragment>
+          <View style={styles.header}>
+            <Text style={styles.headerText} >
+              My Profile
+            </Text>
+          </View>
           <View style={styles.container}>
-            <View style={styles.card}>
               <View style={styles.avatar}>
-                <Image source={{ url: user.avatar}} style={{height: 50, width: 50, resizeMode: Image.resizeMode.contain, borderRadius: 5 }} />
-                <Text style={styles.headerText}>My Info</Text>
+                <Image source={{ url: user.avatar}} style={{height: 50, width: 50, resizeMode: Image.resizeMode.contain, borderRadius: 10 }} />
+                <Text style={styles.text}>You are currenlty in Atlanta, GA</Text>
               </View>
               <View style={styles.name}>
                 <View style={styles.nameContainer}>
@@ -63,13 +73,12 @@ export default class Profile extends React.Component {
                 <Text style={styles.text}>{user.passport}</Text>
                 </View>
               </View>
+              <View style={styles.buttons}>
+                <Button title="Log Out" onPress={() => this.props.userLogOut()} />
+              </View>
             </View>
-            <View style={styles.buttons}>
-              <Button title="Log Out" onPress={() => this.props.userLogOut()} />
-            </View>
-          </View>
         </React.Fragment>
-      </ImageBackground>
+      
     );
   }
 }
@@ -81,48 +90,21 @@ const styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'space-around',
     alignItems: 'center',
-  },
-  card: {
-    flex: 0,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    width: '98%',
-    margin: 20,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: 'lightgrey',
-    backgroundColor: 'rgba(255,255,255,.2)',
-    shadowColor: 'grey',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 1.0
-
-    
+    backgroundColor: 'white'
   },
   avatar: {
-    // margin: 5,
-    // marginTop: 18,
-    shadowRadius: 12,
-    shadowColor: 'white',
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    flexDirection: 'row',
     width: '100%',
     borderBottomWidth: 1,
     borderColor: 'lightgrey',
-    paddingLeft: 5
-
-  },
-  avatarImage: {
-    borderRadius: 0,
-    width: '100%'
-  },
-  headerText:{
-    fontFamily: 'Marker Felt',
-    fontSize: 48,
-    marginRight: '25%'
+    paddingLeft: 15,
+    paddingBottom: 15,
+    paddingRight: 25
   },
   name: {
-    width: '98%',
+    width: '95%',
     margin: 5,
     borderColor: 'grey',
     borderRadius: 5,
@@ -150,17 +132,25 @@ const styles = StyleSheet.create({
     paddingLeft: 5
   },
   header: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    color: 'white'
+    width: '100%',
+    height: '10%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'lightskyblue',
+    shadowColor: 'black',
+    shadowOffset: {width: 5, height: 5},
+    shadowOpacity: 1.0
+  },
+  headerText: {
+    fontSize: 22,
+    fontFamily: 'Noteworthy'
   },
   text: {
     textAlign: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     color: 'black',
-    fontSize: 24,
+    fontSize: 22,
     marginTop: 15,
     fontWeight: '700'
   },
@@ -173,7 +163,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
     borderRadius: 5,
     height: 50,
-    width: '98%',
+    width: '95%',
     shadowColor: 'grey',
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 1.0,

@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "splashload1px.jpg",
+      "filename" : "splashicon1.jpg",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashload2px.jpg",
+      "filename" : "splashicon2.jpg",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "splashload3px.jpg",
+      "filename" : "splashicon3.jpg",
       "scale" : "3x"
     }
   ],
