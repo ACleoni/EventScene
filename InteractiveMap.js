@@ -85,22 +85,23 @@ export default class InteractiveMap extends React.Component {
     // }
 
     handlePress = () => {
-        const url = `http://api.eventful.com/rest/events/search?where=${this.state.region.latitude},${this.state.region.longitude}&within=10&app_key=zMkK7KPG9BQc8XJh`
+        const url = `https://developers.zomato.com/api/v2.1/geocode?lat=${this.state.region.latitude}&lon=${this.state.region.longitude}&apikey=bf633f3538087bcf41595f60dace13fe`
         
         axios.get(url)
          .then(response => response.data)
          .then(result =>{
-             parseString(result, (err, res)=>{
-             jsonData = res
-            //  console.dir(jsonData)
-             console.log(jsonData.search.events[0].event)
-             const eventDataArray = jsonData.search.events[0].event.map(newEvent =>{
-                 console.log(newEvent.title);
-                 return {id: newEvent.$.id, title: newEvent.title[0], coordinates: { latitude: parseFloat(newEvent.latitude[0]), longitude: parseFloat(newEvent.longitude[0])}, description: newEvent.venue_name[0]}
-             });
-             console.log(eventDataArray)
-             this.setState({markers: eventDataArray})
-             })
+             console.log(result)
+            //  parseString(result, (err, res)=>{
+            //  jsonData = res
+            // //  console.dir(jsonData)
+            //  console.log(jsonData)
+            //  const eventDataArray = jsonData.search.events[0].event.map(newEvent =>{
+            //      console.log(newEvent.title);
+            //      return {id: newEvent.$.id, title: newEvent.title[0], coordinates: { latitude: parseFloat(newEvent.latitude[0]), longitude: parseFloat(newEvent.longitude[0])}, description: newEvent.venue_name[0]}
+            //  });
+            //  console.log(eventDataArray)
+            //  this.setState({markers: eventDataArray})
+            //  })
          }).catch(error => console.log(error)
         )
     }
